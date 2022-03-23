@@ -1,4 +1,6 @@
 var express = require('express');
+const { route } = require('express/lib/application');
+const hirdetes = require('../models/hirdetes');
 var router = express.Router();
 
 var Hirdetes = require('../models/hirdetes');
@@ -33,5 +35,23 @@ router.post('/', function (req, res, next) {
 
 
 });
+
+router.get("/", function(req, res, next){
+  Hirdetes 
+  .find()
+  .then(hirdetesek => {
+    res.json(hirdetesek);
+  })
+});
+
+router.delete("/:id", function(req, res, next){
+  const id = req.params.id;
+  Hirdetes
+  .findByIdAndDelete(id)
+  .then(res.json({
+    'status': 'deleted'
+  }))
+  .catch(err => console.log(err));
+})
 
 module.exports = router;
