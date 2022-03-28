@@ -16,9 +16,10 @@ router.post('/', function (req, res, next) {
   const arFt = req.body.arFt;
   const kepUrl = req.body.kepUrl;
 
+
   try {
     if (arFt % 1000 != 0) {
-      throw Error("Az ár nem osztható ezerel!")
+      throw new Error("Az ár nem osztható ezerel!")
     }
     const hirdetes = new Hirdetes({ _id, kategoria, cim, leiras, hirdetesDatuma, serulesmentes, arFt, kepUrl });
     hirdetes
