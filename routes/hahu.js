@@ -4,8 +4,8 @@ const { route } = require('express/lib/application');
 const hirdetes = require('../models/hirdetes');
 var router = express.Router();
 
-var Hirdetes = require('../models/hirdetes');
-var Kategoria = require('../models/kategoria');
+const Hirdetes = require('../models/hirdetes');
+const Kategoria = require('../models/kategoria');
 
 /* GET home page. */
 router.post('/', function (req, res, next) {
