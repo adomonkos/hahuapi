@@ -2,6 +2,7 @@ const { response } = require('express');
 var express = require('express');
 const { route } = require('express/lib/application');
 const hirdetes = require('../models/hirdetes');
+const { findByIdAndUpdate } = require('../models/hirdetes');
 var router = express.Router();
 
 const Hirdetes = require('../models/hirdetes');
@@ -54,8 +55,7 @@ router.delete("/:id", function(req, res, next){
   .then(response => {
     if (response === null) {
       return res.json({ 'err': `A hirdetés ${id} azonosítóval nem létezik`})
-    }
-    Hirdetes
+    }    
     Hirdetes.findByIdAndDelete(id)
   .then(res.json({
     'status': `A hirdetés ${id} azonosítóval nem létezik`
@@ -63,6 +63,45 @@ router.delete("/:id", function(req, res, next){
   .catch(err => console.log(err));
   })
   
+})
+
+router.put('/', function (req, res, next){
+  const id = req.body._id;
+  const updatedArFt = req.body.arFt;
+  /*Hirdetes.findByIdAndUpdate(
+    id, 
+    { arFt: updatedArFt }, 
+    { runValidators: true }, 
+    function (err, docs) {
+      try {
+        if (docs === null) {
+          throw new Error("A megadott azonosító nem létezik!");
+        }
+
+        res.json(docs) 
+      } catch (error) {
+        res.json(error.message)
+      }         
+       
+    }
+  );*/ 
+  Hirdetes.findOneAndUpdate(
+    { cim: "Traktor"}, 
+    { arFt: updatedArFt }, 
+    { runValidators: true }, 
+    function (err, docs) {
+      try {
+        if (docs === null) {
+          throw new Error("A megadott azonosító nem létezik!");
+        }
+
+        res.json(docs) 
+      } catch (error) {
+        res.json(error.message)
+      }         
+       
+    }
+  ); 
 })
 
 router.get("/:mezo", function(req, res, next){
