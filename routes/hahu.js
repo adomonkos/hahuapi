@@ -104,6 +104,19 @@ router.put('/', function (req, res, next){
   ); 
 })
 
+router.get('/adat/:id', function (req, res, next){
+  const id = req.params.id;
+  Hirdetes
+  .findById(id)
+  .then(result => {
+    if (!result) {
+      res.json({'error': "Nincs ilyen id!"});
+    }  
+    res.json(result)
+  })
+  .catch(err => console.log(err))
+})
+
 router.get("/:mezo", function(req, res, next){
   const mezo = req.params.mezo;
   Hirdetes.find()
