@@ -55,6 +55,7 @@ router.delete("/:id", function(req, res, next){
     if (response === null) {
       return res.json({ 'err': `A hirdetés ${id} azonosítóval nem létezik`})
     }
+    Hirdetes
     Hirdetes.findByIdAndDelete(id)
   .then(res.json({
     'status': `A hirdetés ${id} azonosítóval nem létezik`
