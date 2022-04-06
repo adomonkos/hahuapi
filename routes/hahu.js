@@ -120,8 +120,8 @@ router.get('/adat/:id', function (req, res, next){
 router.get("/:mezo", function(req, res, next){
   const mezo = req.params.mezo;
   Hirdetes.find()
-  .populate("kategoria", "nev -_id")
-  .sort({[mezo]: 1})
+  .populate("kategoria", "nev -_id") //sor megjelenítése, eltüntetése(-)
+  .sort({[mezo]: 1}) //rendezés növekvő sorendbe, csökenőbe(-)
   .then((response) => {
     res.json(response);
   })
